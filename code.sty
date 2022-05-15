@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{sty/code}[Display formatted fenced code blocks.]
+
+\RequirePackage{listings}   % display monospace code
+\RequirePackage{scrhack}  % Löst Probleme mit veralteten KOMA-Befehlen im 'listings'-Package.
+\RequirePackage[dvipsnames]{xcolor}
+% \RequirePackage{enumerate}
+% \RequirePackage{listofsymbols}
+% \RequirePackage{paralist} % Mehr Optionen beim Erstellen von Aufzählungen ('\enumerate').
+
+
+%%%%%%%%%%%%%%%%%%%% PUBLIC FUNCTIONS: %%%%%%%%%%%%%%%%%%%%
+
+% Define environment \begin{code} or \begin{code}[java]
+% - escape all characters within the environment
+% - display line numbers
+% - draw a rectangle around the code
+% - automatically wrap too long lines
+% @param #1 programming language for syntax highlighting
+\lstnewenvironment
+{code}[1][]
+{
+    \lstset{
+        language = #1,
+        basicstyle = \scriptsize\ttfamily,
+        keywordstyle = \bfseries\ttfamily\color{NavyBlue},
+        stringstyle = \color{violet}\ttfamily,
+        commentstyle = \color{green}\ttfamily,
+        emph = {square}, 
+        emphstyle = \color{blue}\texttt,
+        emph = {[2]root,base},
+        emphstyle = {[2]\color{yac}\texttt},
+        tabsize = 2,
+        basicstyle = \footnotesize\ttfamily,
+        numbers = left,
+        numberfirstline,
+        breaklines = true,
+        breakatwhitespace = true,
+        linewidth = \textwidth,
+        xleftmargin = 0.075\textwidth,
+        frame = tlrb,
+        captionpos = b,
+        inputencoding = {utf8},
+        extendedchars = false
+    }
+}
+{}
